@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: Copyright 2024 shadPS4 Emulator Project
 # SPDX-License-Identifier: GPL-2.0-or-later
 
+if (NOT MSVC)
+    add_compile_options(-w)
+endif()
+
 set(BUILD_SHARED_LIBS OFF)
 set(BUILD_TESTING OFF)
 set_directory_properties(PROPERTIES
@@ -139,7 +143,7 @@ endif()
 
 # sirit
 add_subdirectory(sirit)
-if (WIN32)
+if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL Clang)
     target_compile_options(sirit PUBLIC "-Wno-error=unused-command-line-argument")
 endif()
 
