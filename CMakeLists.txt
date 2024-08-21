@@ -761,7 +761,7 @@ set(QT_GUI src/qt_gui/about_dialog.cpp
 endif()
 
 if (ENABLE_QT_GUI)
-    qt_add_executable(shadps4
+    qt_add_executable(shadps4 WIN32
         ${AUDIO_CORE}
         ${IMGUI}
         ${INPUT}
@@ -834,7 +834,7 @@ if (ENABLE_QT_GUI)
 endif()
 
 if (WIN32)
-    target_link_libraries(shadps4 PRIVATE mincore winpthreads)
+    target_link_libraries(shadps4 PRIVATE mincore)
 
     if (MSVC)
         # MSVC likes putting opinions on what people can use, disable:
@@ -892,7 +892,6 @@ target_include_directories(shadps4 PRIVATE ${IMGUI_RESOURCES_INCLUDE})
 
 if (ENABLE_QT_GUI)
     set_target_properties(shadps4 PROPERTIES
-#       WIN32_EXECUTABLE ON
         MACOSX_BUNDLE ON
         MACOSX_BUNDLE_ICON_FILE shadPS4.icns)
 

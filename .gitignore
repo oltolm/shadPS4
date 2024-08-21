@@ -412,5 +412,9 @@ FodyWeavers.xsd
 /third-party/out/*
 /src/common/scm_rev.cpp
 
+/CMakeUserPresets.json
+/compile_commands.json
+
 # for macOS
 **/.DS_Store
+
