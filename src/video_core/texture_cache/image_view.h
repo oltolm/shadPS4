@@ -29,7 +29,8 @@ struct ImageViewInfo {
     vk::ComponentMapping mapping{};
     bool is_storage = false;
 
-    auto operator<=>(const ImageViewInfo&) const = default;
+    // auto operator<=>(const ImageViewInfo&) const = default;
+    bool operator==(const ImageViewInfo&) const = default;
 };
 
 struct Image;
