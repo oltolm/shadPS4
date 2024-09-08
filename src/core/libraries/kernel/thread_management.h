@@ -8,8 +8,8 @@
 #include <semaphore>
 #include <string>
 #include <vector>
-#include <pthread.h>
-#include <sched.h>
+#include "externals/winpthreads/include/pthread.h"
+#include "externals/winpthreads/include/sched.h"
 
 #include "common/types.h"
 

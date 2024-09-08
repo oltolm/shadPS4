@@ -4,7 +4,7 @@
 #include <condition_variable>
 #include <list>
 #include <mutex>
-#include <pthread.h>
+#include "externals/winpthreads/include/pthread.h"
 
 #include "common/assert.h"
 #include "common/logging/log.h"

@@ -136,7 +136,7 @@ endif()
 # Winpthreads
 if (WIN32)
     add_subdirectory(winpthreads)
-    target_include_directories(winpthreads INTERFACE winpthreads/include)
+    # target_include_directories(winpthreads INTERFACE winpthreads/include)
 endif()
 
 # sirit
