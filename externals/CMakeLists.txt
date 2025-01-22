@@ -144,7 +144,7 @@ endif()
 # sirit
 add_subdirectory(sirit)
 if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL Clang)
-    target_compile_options(sirit PUBLIC "-Wno-error=unused-command-line-argument")
+    target_compile_options(sirit PRIVATE "-Wno-error=unused-command-line-argument")
 endif()
 
 # half
