@@ -181,7 +181,7 @@ endif()
 include(CheckSymbolExists)
 check_symbol_exists(pthread_mutex_timedlock "pthread.h" HAVE_PTHREAD_MUTEX_TIMEDLOCK)
 if(HAVE_PTHREAD_MUTEX_TIMEDLOCK OR WIN32)
-    add_compile_options(-DHAVE_PTHREAD_MUTEX_TIMEDLOCK)
+    add_compile_definitions(DHAVE_PTHREAD_MUTEX_TIMEDLOCK)
 endif()
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
@@ -1045,9 +1045,9 @@ endif()
 
 if (ENABLE_QT_GUI)
     target_link_libraries(shadps4 PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Network Qt6::Multimedia)
-    add_definitions(-DENABLE_QT_GUI)
+    add_compile_definitions(ENABLE_QT_GUI)
     if (ENABLE_UPDATER)
-        add_definitions(-DENABLE_UPDATER)
+        add_compile_definitions(ENABLE_UPDATER)
     endif()
 endif()
 
@@ -1056,18 +1056,18 @@ if (WIN32)
 
     if (MSVC)
         # MSVC likes putting opinions on what people can use, disable:
-        add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS)
+        add_compile_definitions(_CRT_SECURE_NO_WARNINGS _CRT_NONSTDC_NO_DEPRECATE _SCL_SECURE_NO_WARNINGS)
     endif()
 
-    add_definitions(-DNOMINMAX -DWIN32_LEAN_AND_MEAN)
+    add_compile_definitions(NOMINMAX WIN32_LEAN_AND_MEAN)
 
     if (MSVC)
         # Needed for conflicts with time.h of windows.h
-        add_definitions(-D_TIMESPEC_DEFINED)
+        add_compile_definitions(_TIMESPEC_DEFINED)
     endif()
 
     # Target Windows 10 RS5
-    add_definitions(-DNTDDI_VERSION=0x0A000006 -D_WIN32_WINNT=0x0A00 -DWINVER=0x0A00)
+    add_compile_definitions(NTDDI_VERSION=0x0A000006 _WIN32_WINNT=0x0A00 WINVER=0x0A00)
 
     if (MSVC)
         target_link_libraries(shadps4 PRIVATE clang_rt.builtins-x86_64.lib)
@@ -1092,7 +1092,7 @@ if (WIN32)
     target_sources(shadps4 PRIVATE src/shadps4.rc)
 endif()
 
-add_definitions(-DBOOST_ASIO_STANDALONE)
+add_compile_definitions(BOOST_ASIO_STANDALONE)
 
 target_include_directories(shadps4 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
