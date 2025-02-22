@@ -52,7 +52,7 @@ Go through the Git for Windows installation as normal
 
 1. Open up Visual Studio, select `Open a local folder` and select the folder with the shadPS4 source code. The folder should contain `CMakeLists.txt`
 2. Change x64-Clang-Debug to x64-Clang-Release if you want a regular, non-debug build.
-3. If you want to build shadPS4 with the Qt Gui:
+3. If you want to build shadPS4 with the Qt GUI:
    1. Click x64-Clang-Release and select "Manage Configurations"
    2. Look for "CMake command arguments" and add to the text field  
     `-DENABLE_QT_GUI=ON -DCMAKE_PREFIX_PATH=C:\Qt\6.8.2\msvc2022_64`  

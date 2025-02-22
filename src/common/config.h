@@ -131,7 +131,7 @@ void setVkCrashDiagnosticEnabled(bool enable);
 void setVkHostMarkersEnabled(bool enable);
 void setVkGuestMarkersEnabled(bool enable);
 
-// Gui
+// GUI
 void setMainWindowGeometry(u32 x, u32 y, u32 w, u32 h);
 bool addGameInstallDir(const std::filesystem::path& dir);
 void removeGameInstallDir(const std::filesystem::path& dir);

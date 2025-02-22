@@ -205,7 +205,7 @@ SettingsDialog::SettingsDialog(std::span<const QString> physical_devices,
                 });
     }
 
-    // Gui TAB
+    // GUI TAB
     {
         connect(ui->backgroundImageOpacitySlider, &QSlider::valueChanged, this,
                 [this](int value) { emit BackgroundOpacityChanged(value); });
