@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright 2024 shadPS4 Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <ctime>
 #include <thread>
 
 #include "common/assert.h"
@@ -485,12 +486,26 @@ Common::NativeClock* GetClock() {
 s32 PS4_SYSV_ABI sceKernelConvertUtcToLocaltime(time_t time, time_t* local_time,
                                                 struct OrbisTimesec* st, u64* dst_sec) {
     LOG_TRACE(Kernel, "Called");
+#ifdef _WIN32
+    long timezone = _timezone;
+    *local_time = time - _timezone;
+
+    if (st != nullptr) {
+        st->t = time;
+        st->west_sec = -_timezone;
+        st->dst_sec = -_dstbias;
+    }
+
+    if (dst_sec != nullptr) {
+        *dst_sec = -_dstbias;
+    }
+#else
 #ifdef __APPLE__
     // std::chrono::current_zone() not available yet.
     const auto* time_zone = date::current_zone();
 #else
     const auto* time_zone = std::chrono::current_zone();
-#endif
+#endif // __APPLE__
     auto info = time_zone->get_info(std::chrono::system_clock::now());
 
     *local_time = info.offset.count() + info.save.count() * 60 + time;
@@ -504,6 +519,7 @@ s32 PS4_SYSV_ABI sceKernelConvertUtcToLocaltime(time_t time, time_t* local_time,
     if (dst_sec != nullptr) {
         *dst_sec = info.save.count() * 60;
     }
+#endif // _WIN32
 
     return ORBIS_OK;
 }
